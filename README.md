@@ -1,0 +1,2 @@
+# EulaCraft
+ EulaCraft - Minecraft plugin
