@@ -1,8 +1,11 @@
 package me.pikod.eulacraft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,12 +21,10 @@ public class Event implements Listener {
 	
 	Plugin pl;
 	ConfigurationManager cm;
-	YamlConfiguration config;
 	
 	public Event(Plugin plugin) {
 		pl = plugin;
 		cm = pl.getConfigurationManager();
-		config = cm.getSettings();
 		
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
@@ -45,23 +46,37 @@ public class Event implements Listener {
 		ItemStack item;
 		ItemMeta meta;
 
-		item = new ItemStack(Material.getMaterial(config.getString("eula.item")));
+		item = new ItemStack(Material.getMaterial(cm.getSettings().getString("eula.item")));
 		meta = item.getItemMeta();
-		meta.setDisplayName(Lang.color(config.getString("eula.text")));
+		meta.setDisplayName(Lang.color(cm.getSettings().getString("eula.text")));
+		List<String> list = new ArrayList<String>();
+		for(String key : cm.getSettings().getStringList("eula.lore")) {
+			list.add(Lang.color(key));
+		}
+		meta.setLore(list);
 		item.setItemMeta(meta);
-		inv.setItem(config.getInt("eula.slot"), item);
+		if(cm.getSettings().getBoolean("eula.enchanted")) {
+			item.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		}
+		inv.setItem(cm.getSettings().getInt("eula.slot"), item);
 		
-		item = new ItemStack(Material.getMaterial(config.getString("accept.item")));
+		item = new ItemStack(Material.getMaterial(cm.getSettings().getString("accept.item")));
 		meta = item.getItemMeta();
-		meta.setDisplayName(Lang.color(config.getString("accept.text")));
+		meta.setDisplayName(Lang.color(cm.getSettings().getString("accept.text")));
 		item.setItemMeta(meta);
-		inv.setItem(config.getInt("accept.slot"), item);
+		if(cm.getSettings().getBoolean("accept.enchanted")) {
+			item.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		}
+		inv.setItem(cm.getSettings().getInt("accept.slot"), item);
 		
-		item = new ItemStack(Material.getMaterial(config.getString("reject.item")));
+		item = new ItemStack(Material.getMaterial(cm.getSettings().getString("reject.item")));
 		meta = item.getItemMeta();
-		meta.setDisplayName(Lang.color(config.getString("reject.text")));
+		meta.setDisplayName(Lang.color(cm.getSettings().getString("reject.text")));
 		item.setItemMeta(meta);
-		inv.setItem(config.getInt("reject.slot"), item);
+		if(cm.getSettings().getBoolean("reject.enchanted")) {
+			item.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		}
+		inv.setItem(cm.getSettings().getInt("reject.slot"), item);
 		player.openInventory(inv);
 	}
 	

@@ -12,7 +12,7 @@ enabled: true
 
 # kick > Kick the player
 # none > Close menu and don't do anything (Menu is open after player try to move)
-on-reject: none
+on-reject: kick
 
 kick-message: '&cPlease accept agreement!' # Do not use &l
 
@@ -26,18 +26,25 @@ title: '&8Server Agreement'
 
 #Eula:
 eula:
-    text: '&aI do don''t use hack'
-    item: PAPER
+    text: '&aAgreement'
+    lore:
+    - '&2I will not use hack.'
+    - '&2I will not swear.'
+    - '&2I will follow the rules.'
+    item: BOOK
+    enchanted: false
     slot: 13
     
 #Accept button:
 accept: 
     text: '&aAccept'
     item: EMERALD
+    enchanted: false
     slot: 11
 
 #Reject button:
 reject: 
     text: '&cReject'
     item: REDSTONE
+    enchanted: false
     slot: 15
