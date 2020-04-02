@@ -1,0 +1,13 @@
+name: EulaCraft
+version: 0.1
+description: eulacraft programmed by pikod
+author: Pikod
+main: me.pikod.eulacraft.Plugin
+commands:
+    eulacraft:
+        aliases: [ec]
+        description: Reload
+        permission: eulacraft.admin
+permissions:
+    eulacraft.admin:
+        description: Permission to reload plugin

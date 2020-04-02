@@ -1,0 +1,43 @@
+
+#      Eula Craft     #
+# ################### #
+#  Created by Pikod   #
+#  Sub my channel :)  #
+#  VERSION 0.1        # 
+# ################### #
+# Youtube.com/c/pikod #
+
+# Plugin is enabled?
+enabled: true
+
+# kick > Kick the player
+# none > Close menu and don't do anything (Menu is open after player try to move)
+on-reject: none
+
+kick-message: '&cLütfen anlaşmayı kabul edin!' # Do not use &l
+
+# none > Disable
+accepted-message: '&aGüzel vakit geçirmenizi diliyoruz!'
+
+#Title of menu:
+title: '&8Server Agreement'
+
+# Slots start at zero
+
+#Eula:
+eula:
+    text: '&aI do don''t use hack'
+    item: PAPER
+    slot: 13
+    
+#Accept button:
+accept: 
+    text: '&aAccept'
+    item: EMERALD
+    slot: 11
+
+#Reject button:
+reject: 
+    text: '&cReject'
+    item: REDSTONE
+    slot: 15
