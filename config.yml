@@ -14,10 +14,10 @@ enabled: true
 # none > Close menu and don't do anything (Menu is open after player try to move)
 on-reject: none
 
-kick-message: '&cLütfen anlaşmayı kabul edin!' # Do not use &l
+kick-message: '&cPlease accept agreement!' # Do not use &l
 
 # none > Disable
-accepted-message: '&aGüzel vakit geçirmenizi diliyoruz!'
+accepted-message: '&aThanks for accept agreement!'
 
 #Title of menu:
 title: '&8Server Agreement'
