@@ -84,8 +84,8 @@ public class Event implements Listener {
 	public void onGui(InventoryClickEvent event) {
 		if(event.getWhoClicked() instanceof Player) {
 			if(event.getClickedInventory() == null) return;
-			if(event.getClickedInventory().getTitle() == null) return;
-			if(event.getClickedInventory().getTitle().equals(Lang.color(cm.getSettings().getString("title")))) {
+			if(event.getView().getTitle() == null) return;
+			if(event.getView().getTitle().equals(Lang.color(cm.getSettings().getString("title")))) {
 				event.setCancelled(true);
 				if(event.getSlotType() != SlotType.CONTAINER) return;
 				if(event.getCurrentItem().getType() == Material.AIR) return;
@@ -104,7 +104,7 @@ public class Event implements Listener {
 	
 	@EventHandler
 	public void onClose(InventoryCloseEvent event) {
-		if(event.getInventory().getTitle().equals(Lang.color(cm.getSettings().getString("title")))) {
+		if(event.getView().getTitle().equals(Lang.color(cm.getSettings().getString("title")))) {
 			if(!cm.getUserData().isSet(event.getPlayer().getName())) {
 				if(cm.getSettings().getString("on-reject").equals("kick")) {
 					Player player = (Player) event.getPlayer();

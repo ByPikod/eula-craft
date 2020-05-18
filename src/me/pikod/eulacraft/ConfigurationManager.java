@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.commons.io.IOUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ConfigurationManager {
@@ -44,7 +43,7 @@ public class ConfigurationManager {
 			
 		if(!settings_file.exists()) {
 			try {
-				copyInputStreamToFile(plugin.getResource("config.yml"), settings_file);
+				copy(plugin.getResource("config.yml"), settings_file);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -86,11 +85,18 @@ public class ConfigurationManager {
 		}
 		return userdata;
 	}
-	
-	private void copyInputStreamToFile(InputStream inputStream, File file) throws Exception {
-		OutputStream outputStream = new FileOutputStream(file);
-		IOUtils.copy(inputStream, outputStream);
-		outputStream.close();
-		inputStream.close();
+	public void copy(InputStream in, File file) {
+	    try {
+	        OutputStream out = new FileOutputStream(file);
+	        byte[] buf = new byte[1024];
+	        int len;
+	        while((len=in.read(buf))>0){
+	            out.write(buf,0,len);
+	        }
+	        out.close();
+	        in.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }
